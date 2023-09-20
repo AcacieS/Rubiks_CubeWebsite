@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"><link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<style>
+
+.hov:hover{
+  background-color: green;
+}
+.flex-row {
+        display: flex;
+        flex-direction: row;
+      }
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.boutton{
+    padding-left:25px;
+    padding-right:25px;
+    text-align: center;
+    color:black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 25px;
+    display:block;
+}
+.items-center {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .text-center {
+        text-align: center;
+      }
+.title{
+  text-transform: uppercase;
+font-size:48px;
+font-weight:bold
+}
+.textL{
+  font-family: "Times New Roman", Times, serif;
+    font-size:18px;
+    font-weight:bold
+}
+.textBtn{
+  font-family: "Times New Roman", Times, serif;
+    font-size:36px;
+    font-weight:bold
+} 
+.border{
+  border-style: solid;
+  border-width: 2px;
+}    
+</style>
+<body>
+<!-- pageMenu -->
+<section id = "pageMenu" style="display:block">
+<section class="flex-col justify-center">  
+
+    <div class="flex-col" style="background-color:orange; height:400px; padding:50px; gap:100px">
+        <div style="font-weight:bold; font-size:70px;text-align: center;">RUBIK'S CUBE</div>
+        <div class="flex-row justify-center">
+            <div class="textBtn text-center boutton" style="width:200px" onClick="play()">Play</div>
+        </div>        
+    </div> 
+    
+    <div class="flex-row justify-between text-center" style="flex-grow:1">
+        <div class="flex-col" style="background-color:rgb(31, 192, 71); height:325px; padding:50px; gap:50px;">
+            <div class="title" style="color:white">SOLUTION POUR VOUS</div>
+            <div class="flex-row justify-center">
+                <div class="textBtn boutton" style="color:white" onClick="page1()">Solution Guide</div>
+            </div>
+        </div>
+
+        <div style="background-color:yellow; height:325px; padding:50px; flex-grow:1">
+          <div id="theorie" class="flex-col" style="gap:50px;">
+            <div class="title">Le math et le rubick's cube?</div>
+            <div class="flex-row justify-center">
+            <div class="textBtn boutton" onClick="page2()">Théorie du rubik's cube</div>
+            </div>
+          </div> 
+          <div id="choixTheorie" style="display:none"> 
+            <div class="flex-col" style="gap:50px;">  
+              <div class="title">Deux théories Parlées</div> 
+              <div class="flex-col" style="gap:15px">
+                <div class="flex-row justify-center">
+                  <div class="textBtn boutton flex-row" style="width:500px" onClick="thPerm()">La théorie du permutation</div>         
+                </div>
+                <div class="flex-row justify-center">
+                <div class="textBtn boutton flex-row justify-center" style="width:500px" onClick="thGroupe()">La théorie du groupe</div>
+                </div>
+              </div>     
+            </div>
+          </div> 
+        </div>
+    </div>
+
+</section>
+
+<section class="flex-row" style="background-color: rgb(34, 53, 223); padding-left:100px;padding:100px; gap:50px">
+    <img class="border "src="rubiksAuteur.jpg" style="color:white; width:400px">
+    <div class="flex-col justify-center" style="color:white">
+       <div class="title text-center">Un peu d'histoire...</div> 
+       <div class="textL">Le Rubik’s cube inventé en 1974 par le designer et architecte hongrois Ernö Rubik a été créé dans le but d'aider ses élèves à visualiser mieux l'espace 3D. Devenu de plus en plus populaire de nos jours, plusieurs compétitions ont été organisées.Aujourd’hui, le record du monde est maintenu par Yiheng Wang de la Chine, un enfant de 9 ans et qui a obtenu 4,69s comme moyenne pour le Rubik's cube de 3x3x3. D’ailleurs,  le Rubik’s cube est même un jeu conseillé pour les personnes atteintes de trouble de mémoire en renforçant la capacité de mémoriser et de penser.
+      </div>
+    </div>
+    
+</section>
+
+<section class="flex-col text-center"style="background-color: orange; padding:50px;">
+    <div class="title">DIFFÉRENTS RUBIK'S CUBE</div>
+    <div class="flex-row justify-center" style="padding:50px; gap:50px">
+        <img id="rubiksImg" class="border" style="width:250px; height:250px" src="rubiks1.jpg">
+        <img id="rubiksImg2" class="border" style="width:250px; height:250px" src="rubiks2.jpg">
+        <img id="rubiksImg3" class="border" style="width:250px; height:250px" src="rubiks3.jpg">
+    </div>
+    <div class="flex-row justify-between">
+        <div class="textBtn boutton" onClick="rubiksBefore()">Avant</div>
+        <div class="textBtn boutton" onClick="rubiksAfter()">Après</div>
+    </div>
+</section>
+
+<section class="flex-col text-center" style="background-color:rgb(31, 192, 71); padding:50px;gap:50px">
+    <div class="title">Compétition</div>
+    <div class="flex-row justify-center">
+        <a class="textBtn boutton textL" href="https://www.worldcubeassociation.org/competitions" style="padding:25px">Lien vers les compétitions</a>
+    </div>
+</section>
+
+<section class="flex-col text-center" style="background-color:rgb(218, 40, 40); color:white; padding:50px;gap:50px">
+  <div class="title">Auteures</div>
+  <div class="textL">
+  <div>Théorie: Deborah Nihezagire & Acacie Song</div>
+  <div>Site Web: Acacie Song</div>
+  <div>Rubik's Cube open source from MIT License: 
+  <a href = "https://mega.nz/file/Ek9WRKAD#Nmh_4R2pGCRSW-cP2emm9PkLrDZeWMyYhEk2BFQQEvQ">Lien</a>
+  </div>
+</section>
+</section>
+
+<!-- play : For the Rubiks CUBE that can be played it is not my source, which is wrote in the website 
+  Rubik's Cube open source from MIT License: "https://mega.nz/file/Ek9WRKAD#Nmh_4R2pGCRSW-cP2emm9PkLrDZeWMyYhEk2BFQQEvQ"-->
+
+<section id="playID" style="display:none">
+  
+    <div class="ui">
+
+        <div class="ui__background"></div>
+      
+        <div class="ui__game"></div>
+      
+        <div class="ui__texts">
+          <h1 class="text text--title">
+            <span>THE</span>
+            <span>CUBE</span>
+          </h1>
+          <div class="text text--note">
+            Double tap to start
+          </div>
+          <div class="text text--timer">
+            0:00
+          </div>
+          <div class="text text--complete">
+            <span>Complete!</span>
+          </div>
+          <div class="text text--best-time">
+            <icon trophy></icon>
+            <span>Best Time!</span>
+          </div>
+        </div>
+      
+        <div class="ui__prefs">
+          <range name="size" title="Cube Size" list="2,3,4,5"></range>
+          <range name="flip" title="Flip Type" list="Swift&nbsp;,Smooth,Bounce"></range>
+          <range name="scramble" title="Scramble Length" list="20,25,30"></range>
+          <range name="fov" title="Camera Angle" list="Ortographic,Perspective"></range>
+          <range name="theme" title="Color Scheme" list="Cube,Erno,Dust,Camo,Rain"></range>
+        </div>
+      
+        <div class="ui__theme">
+          <range name="hue" title="Hue" color></range>
+          <range name="saturation" title="Saturation" color></range>
+          <range name="lightness" title="Lightness" color></range>
+        </div>
+      
+        <div class="ui__stats">
+          <div class="stats" name="cube-size">
+            <i>Cube:</i><b>3x3x3</b>
+          </div>
+          <div class="stats" name="total-solves">
+            <i>Total solves:</i><b>-</b>
+          </div>
+          <div class="stats" name="best-time">
+            <i>Best time:</i><b>-</b>
+          </div>
+          <div class="stats" name="worst-time">
+            <i>Worst time:</i><b>-</b>
+          </div>
+          <div class="stats" name="average-5">
+            <i>Average of 5:</i><b>-</b>
+          </div>
+          <div class="stats" name="average-12">
+            <i>Average of 12:</i><b>-</b>
+          </div>
+          <div class="stats" name="average-25">
+            <i>Average of 25:</i><b>-</b>
+          </div>
+        </div>
+      
+        <div class="ui__buttons">
+          
+          <button class="btn btn--bl btn--stats">
+            <icon trophy></icon>
+          </button>
+          <button class="btn btn--br btn--prefs">
+            <icon settings></icon>
+          </button>
+          <button class="btn btn--bl btn--back">
+            <icon back></icon>
+          </button>
+          <button class="btn btn--br btn--theme">
+            <icon theme></icon>
+          </button>
+          <button class="btn btn--br btn--reset">
+            <icon reset></icon>
+          </button>
+        </div>
+      
+      </div>
+      <!-- partial -->
+</section>
+
+<!-- theorie du permutation -->
+<section id="perm" style="background-color:yellow; padding:75px; -ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none; display:none">
+  <div class="flex-col text-center" style="gap:50px;">
+  <div class="title">Nombre de permutations</div>
+  <div class="title">4.3252 · 10^19</div> 
+      <div class="flex-row justify-center" style="gap:150px; flex-grow:1">
+      <div class="flex-col justify-center" style="gap:50px">
+        <div class="flex-row title" style="font-family: Times New Roman, Times, serif;">
+        <span class="hov" onClick="coin()">(8! · 3^8 ·</span>
+        <span class="hov" onClick="arret()"> 12! · 2^12)</span>
+        <span class="hov" onClick="faceCoin()">/ (3 ·</span>
+        <span class="hov" onClick="faceArret()"> 2 ·</span>
+        <span class="hov" onClick="position()"> 2 )</span>
+        </div>
+        <div class="textBtn boutton" style="width:150px" onClick="rPerm()">Retour</div>
+      </div>
+      <div id="expPerm"class="textL flex-col justify-center"style="height: 500px; width: 400px; background-color:white; padding:25px">
+  Le nombre de permutation est le nombre de possibilité de combinaison.<br> Si on défait les pièces du Rubik's Cube: <br>(Vous pouvez appuyer sur les chiffres du formule pour voir la logique derrière.)</div>   
+    </div>  
+    </div>
+  </div>  
+</section>
+
+<!-- théorie sur les groupes -->
+
+<section id="groupe" class="text-center" style="flex-grow:1;background-color: green; color:white; padding:100px; display:none">
+  <div class="flex-col" style="gap:75px">
+  <div class="title"> Théorie du groupe </div>
+  <div class="flex-row justify-center" style="gap:125px">
+  <div class="flex-col title" style="gap:40px">
+    <div class="textBtn boutton" style="width:350px; color:white" onClick="associativite()">Associativité</div>
+    <div class="textBtn boutton" style="width:350px; color:white" onClick="identite()">Identité</div>
+    <div class="textBtn boutton" style="width:350px; color:white" onClick="inverse()">Inverse</div>
+    <div class="textBtn boutton" style="width:350px; color:white" onClick="fermeture()">Fermeture</div>
+  </div>
+  <img style="width:350px"src="rubiksGroupe2.png">
+  </div>
+  <div class="flex-row justify-between">
+    <div class="textBtn boutton" style="color:white" onClick="rGroupe()">Retour</div>
+    <div class="textL flex-col justify-center">La théorie du groupe est un ensemble ayant une opération qui suit 4 axiomes: Associativité, Identité, Inverse et Fermeture.</div>
+  </div>
+  </div>
+</section>
+<!-- associativite -->
+<section id="asso" style="background-color:greenyellow; padding:100px; display:none">
+  <div class="textL flex-col text-center" style="gap:50px">
+    <div class="title">Associativité</div>
+    <div>
+      <div class="flex-row justify-center items-center" style="gap:100px">
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title"> Exemples fréquents</div>
+          <div class="textL">Pour l'addition <br> (x + y) + z = x + (y + z)</div>
+          <div class="textL">Pour la multiplication <br> (x * y) * z = x * (y * z)</div>
+        </div>
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemple pour la Rubik's Cube</div>
+          <div class="textL">Tourner 2 fois 90 degré horaire vers la droite <br> 1 fois 90 degré horaire vers la droite, <br> 1 fois 90 degré horaire vers la droite <br> = <br> Tourner 1 fois 90 degré horaire vers la droite et 1 fois 90 degré horaire vers la droite, <br> puis tourner 2 fois 90 degré horaire vers la droite <br> (2R + R) + R = (R + R) + 2R</div>
+        </div>
+      </div>
+    </div>
+    <div class="textL flex-row justify-between">
+      <div class="textBtn boutton" onClick="rAsso()">Retour</div>
+      <div class="flex-col justify-center">L'associativité est une propriété qui permet de changer l'ordre de la paranthèse des termes pour retrouver à la même résultat.</div>
+   
+    </div>
+  </div>
+</section>
+<!-- identite -->
+<section id="iden" style="background-color:greenyellow; padding:100px; display:none">
+  <div class="flex-col text-center" style="gap:50px">
+    <div class="title">Identité</div>
+    <div>
+      <div class="flex-row justify-center items-center" style="gap:100px">
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title"> Exemples fréquents</div>
+          <div class="textL">Pour l'addition <br> N = 0 <br> x + 0 = 0 + x = x</div>
+          <div class="textL">Pour la multiplication <br> N = 1 <br> x * 1 = x</div>
+        </div>
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemple pour la Rubik's Cube</div>
+          <div class="textL">Rotation de 0 degré<br> Tourner 0 degré vers la droite<br>=<br> Rester au même face du départ</div>
+        </div>
+      </div>
+    </div>
+    <div class=" textL flex-row justify-between">
+      <div class="textBtn boutton" onClick="rIden()">Retour</div>
+      <div class="flex-col justify-center">L'identité est une propriété qu'en applicant un certain élément neutre N à un élément du groupe, ça donne le même élément.</div>
+    </div>
+  </div>
+</section>
+<!-- inverse -->
+<section id="inv" style="background-color:greenyellow; padding:100px; display:none">
+  <div class="flex-col text-center" style="gap:50px">
+    <div class="title">Inverse</div>
+    <div>
+      <div class="flex-row justify-center items-center" style="gap:100px">
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemples fréquents</div>
+          <div class="textL">Pour l'addition <br> x + (- x) = N = 0</div>
+          <div class="textL">Pour la multiplication <br> x * x^(-1) = N = 1</div>
+        </div>
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemple pour la Rubik's Cube</div>
+          <div class="textL">Tourner 90 degré horaire à droite, puis tourner 90 degré anti-horaire à droite <br>=<br> Au neutre N qui est de 0 degré <br> R + R' = 0</div>
+        </div>
+      </div>
+    </div>
+    <div class="textL flex-row justify-between">
+      <div class="textBtn boutton" onClick="rInv()">Retour</div>
+      <div class="flex-col justify-center">L'inverse est une propriété où deux éléments d'un groupe mis ensemble forment un élément neutre N.</div>
+    </div>
+  </div>
+</section>
+<!-- fermeture -->
+<section id="ferm" style="background-color:greenyellow; padding:100px; display:none">
+  <div class="flex-col text-center" style="gap:50px">
+    <div class="title">Fermeture</div>
+    <div>
+      <div class="flex-row justify-center items-center" style="gap:100px">
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemples fréquents</div>
+          <div class="textL">Pour l'addition <br>x + y = z qui fait partie du groupe</div>
+          <div class="textL">Pour la multiplication <br> x * y = z qui fait partie du groupe</div>
+          <div class="textL">Contre-Exemple <br> Exemple d'ensemble: 3, 7, 10, -2 <br> x + y = 7 + 10 = 17 qui ne fait pas partie de l'ensemble. <br> Ainsi, on peut affirmer que cet ensemble n'a pas la propriété de fermeture</div>
+        </div>
+        <div class="flex-col" style="height: 400px; width: 400px; background-color:white; gap:25px; padding:25px">
+          <div class="title">Exemple pour la Rubik's Cube</div>
+          <div class="textL">Tourner 90 degré n'importe où va toujours donner un élément de l'ensemble du 43 quintillion de permutations possibles.</div>
+        </div>
+      </div>
+    </div>
+    <div class="textL flex-row justify-between" >
+      <div class="textBtn boutton" onClick="rFerm()">Retour</div>
+      <div class="flex-col justify-center">La fermeture est une propriété qui avec l'opération et peu importe l'élément forme un élément qui fait partie de l'ensemble.</div>
+    </div>
+  </div>
+</section>
+
+<!-- solution guide -->
+<section id="page1ID"style="background-color:orange; padding:85px; display:none">
+  <div class="flex-col" style="gap:75px">
+   <div class="title text-center">SOLUTION</div> 
+   <div>
+    <div class="textBtn text-center">NOTATION CUBIQUE</div>
+    <div class="textL text-center">La notation utilisée pour résoudre le Rubik’s Cube par un algorithme</div>
+   </div>
+    <div class="flex-row justify-center" style="gap:25px">
+      <img src="rubiksSolution.png">
+      <div class="flex-col" style="gap:26px">
+        <div class="textL">Lettre signifie tourner 90 degré horaire (avec ' signifie antihoraire)</div>
+        <div class="textL">R: right (droite)</div>
+        <div class="textL">L: left (gauche)</div>
+        <div class="textL">U: up (haut)</div>
+        <div class="textL">D: down (bas)</div>
+        <div class="textL">F: front (devant)</div>
+        <div class="textL">B: back (derrière)</div>
+        <div class="textL">M E S: sont chacune des faces du milieu</div>
+        <div class="textL boutton" style="width:100px"onClick="solutionH()">Suite</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solH" style="background-color:rgb(31, 192, 71);padding:100px; display:none">
+  <div class="flex-col justify-between" style="gap:50px; color:white">
+    <div class="text-center"> 
+      <div class="title">SOLUTION</div>
+      <div class="textL">HISTOIRE DERRIÈRE L’ALGORITHME DU RUBIK’S CUBE</div>
+    </div>
+    <div class="flex-row justify-center" style="padding:50px; gap:50px">
+        <img class="border" style="width:300pxl;" src="rubiksAlg.jpg">
+      
+      <div class="textL flex-col justify-center" style="gap:25px"> 
+        <div>
+          Morwen Thistlewaite est l’un des premiers à publier une méthode de résolution
+          informatique efficace (R,L,U,B,F...), en 1981. <br>Grâce à cette méthode, il est capable de le
+          résoudre en moins en 52 h(half-métrique).
+        </div>
+        <div>Actuellement,on essaie d’atteindre les 20h de rotation mais cela grâce HébertKociemba qui a amélioré l’algorithme de Morwen.</div>
+        <div class="boutton" style="color:white; width:100px"onClick="solution()">Suite</div>
+      </div>  
+    </div>  
+ </div>
+</section>
+
+<section id="sol" style="background-color:rgb(77, 10, 10); padding:100px; color:white; display:none;">
+  <div class="flex-col" style="gap:75px">
+    <div class="title text-center">Solution pour Débutant</div>
+    <div class="flex-row justify-center" style="gap:100px">
+
+      <div class="flex-col justify-center" style="gap:25px">
+
+        <div class="flex-row justify-center" style="gap:100px">
+          <div class="textBtn boutton" style="width:400px; color:white;" onClick="e1()">1: Bord blanc</div>
+        </div>
+          <div class="flex-row justify-center">
+            <div class="textBtn boutton" style="width:400px; color:white;" onClick="e2()">2: Face blanc</div>
+          </div>
+          <div class="flex-row justify-center">
+            <div class="textBtn boutton" style="width:400px; color:white;" onClick="e3()">3: Couche centrale</div>
+          </div> 
+          <div class="flex-row justify-center">
+              <div class="textBtn boutton" style="width:400px; color:white;" onClick="e4()">4: Croix jaune</div>
+          </div>
+          <div class="flex-row justify-center">
+            <div class="textBtn boutton" style="width:400px; color:white;" onClick="e5()">5: Permuter les bords</div>
+          </div>
+          <div class="flex-row justify-center">
+            <div class="textBtn boutton" style="width:400px; color:white;" onClick="e6()">6: Coins en cycle</div>
+          </div>
+          <div class="flex-row justify-center">
+            <div class="textBtn boutton" style="width:400px; color:white;" onClick="e7()">7: Orienter les coins</div>
+          </div>
+          <div class="textL boutton" style="color:white; width:100px" onClick="rSolution()">Retour</div>
+      </div>
+      <img id="win" style="display:none" src="solWinImg.png">
+      </div>   
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eq">
+
+  <section id="eq1" class="textL text-center" style="padding:50px; display:none; background-color:rgb(107, 10, 10)">
+    <div class="flex-col" style="gap:20px">
+    <div class="title" style="color:white">Bord blanc</div>
+    <div style="background-color:white; padding:15px">
+      <div class="textL">On va commencer avec le Blanc.<br>
+      Il faut essayer de former un signe plus sur le dessus du cube, en faisant correspondre les
+      couleurs des autocollants lateraux aux couleurs centres latéraux.</div>
+      <img src="eq1Img1.png">
+      <div>
+        Pour y arriver: Il y a une méthode pour chaque situation
+      </div>
+      <img src="eq1Img2.png">
+      <div>A - Si le blanc est situé à la face en dessous du milieu</div>
+      <img src="eq1Img3.png">
+      <div>B - Si le blanc se retrouve au bas</div>
+      <img src="eq1Img4.png">
+      <div>C(le dernier cube) - Si le blanc se retrouve au milieu</div>
+      <img src="eq1Img5.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq2" class="textL text-center" style="padding:50px;  background-color:rgb(158, 12, 12);display:none">
+    <div class="flex-col" style="gap:20px">
+    <div class="title" style="color:white">Face blanc</div>
+    <div style="background-color:white; padding:100px">
+      <div class="textL">Lorsque les bords blancs sont trouvés, on passe à la résolution des coins.</div>
+      <img src="eq2Img1.png">
+      <div>
+        Mettre tout d’abord le coin blanc à l’endroit montre par les flèches dans l’une des positions
+        en surbrillance. <br> Répéter l’algorithme jusqu’à obtenir une face blanche unie avec les
+        autocollants latéraux qui correspondent aux centres latéraux.
+      </div>
+      <img src="eq2Img2.png">
+      <div>Ça devrait ressembler à cela!</div>
+      <img src="eq2Img3.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq3" class="textL text-center" style="padding:50px; background-color:rgb(230, 72, 24); display:none">
+    <div class="flex-col" style="gap:50px">
+    <div class="title" style="color:white" >Couche centrale</div>
+    <div style="background-color:white; padding:50px">
+      <div class="textL">Retourner le rubik’s, car on a fini avec la partie blanche. <br> Insérer une pièce de bordure de la
+        position supérieure avant la couche intermédiaire (que vous pouvez voir avec la flèche rouge ) <br> en utilisant l’algorithme gauche ou droite dépendant d'où tu veux mettre la pièce:</div>
+      <img src="eq3Img1.png">
+      <div class="flex-row justify-center" style="gap:25px">
+      <div class="flex-col justify-center">À Gauche:</div>
+      <img src="eq3Img2.png">
+      </div>
+      
+      <div class="flex-row justify-center" style="gap:25px">
+        <div class="flex-col justify-center">À Droite:</div>
+        <img src="eq3Img3.png">
+      </div>
+      <div>Ça devrait ressembler à cela!</div>
+      <img src="eq3Img4.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq4" class="textL text-center" style="padding:150px; background-color:rgb(236, 108, 34); display:none">
+    <div class="flex-col" style="gap:50px">
+    <div class="title" style="color:white">Croix jaune</div>
+    <div style="background-color:white; padding:75px">
+      <div class="textL">Sur le haut du cube, il y a soit une croix jaune,une ligne ou un point . Notre but c’est de
+        former une croix jaune.</div>
+      <img src="eq4Img1.png">
+      <div> Suivre l’algorithme pour passer au prochain étape!</div>
+      <img src="eq4Img2.png">
+      
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq5" class="textL text-center" style="padding:150px; background-color:rgb(238, 131, 31); display:none">
+    <div class="flex-col" style="gap:50px">
+    <div class="title" style="color:white">Permuter les bords</div>
+    <div style="background-color:white; padding:50px">
+      <div class="textL">Même si on a une croix jaune, les bords ne correspondent pas à leurs couleurs latéraux.</div>
+      <img src="eq5Img1.png">
+      <div> Suit l'algorithme pour changer les bords jaunes avant et gauche dans la couche supérieure!</div>
+      <img src="eq5Img2.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq6" class="textL text-center" style="padding:150px; background-color:rgb(247, 168, 49); display:none">
+    <div class="flex-col" style="gap:50px">
+    <div class="title" style="color:white">Coins en cycle</div>
+    <div style="background-color:white; padding:50px">
+      <div class="textL">Maintenant, c’est le tour de mettre les coins jaunes en position finale.</div>
+      <img src="eq6Img1.png">
+      <div> Suit l'algorithme!</div>
+      <img src="eq6Img2.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="rSol()">Retour</div>
+    </div>     
+  </div> 
+  </section>
+
+  <section id="eq7" class="textL text-center" style="padding:100px; background-color:rgb(247, 184, 49); display:none">
+    <div class="flex-col" style="gap:50px">
+    <div class="title" style="color:white">Orienter les coins</div>
+    <div style="background-color:white; padding:50px">
+      <div class="textL">Voici la dernière étape pour orienter les coins jaunes. <br> Refaire la même 2e étape que celle des coins blancs:</div>
+      <img src="eq7Img1.png">
+      <div class="textBtn">En suivant la démarche:</div>
+      <div class="flex-row justify-center">
+      <div style="text-align: left;">
+        I. Tenir le cube dans la main avec un jaune non trouvé avec la position haut droite<br>
+        II. Répéter l’algorithme en haut<br>
+        III. Tourner la couche supérieure pour amener une pièce non résolu dans la position surbrillance<br>
+        IV. Répéter encore l’algorithme jusqu’à qu’il soit résolu<br>
+        V. Refaire III et IV pour les autres coins non résolu.<br>
+      </div>
+        </div>
+      <img src="eq7Img2.png">
+      <div class="textL boutton" style="color:black; width:100px" onClick="solWin()">Fini!!</div>
+    </div>     
+  </div> 
+  </section>
+
+</section>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.min.js'></script>
+<script src="./script.js"></script>  
+    <script>
+
+        var a=1
+        var b=2
+        var c=3
+        var jeuV=false
+        var rubiksImg = document.getElementById ("rubiksImg");
+        var rubiksImg2 = document.getElementById ("rubiksImg2");
+        var rubiksImg3 = document.getElementById ("rubiksImg3");
+        var pageMenu = document.getElementById("pageMenu");
+        var playID = document.getElementById("playID");
+        var page1ID = document.getElementById("page1ID");
+        var page2ID = document.getElementById("page2ID");
+        var perm = document.getElementById("perm"); 
+        var groupe = document.getElementById("groupe");  
+        var asso = document.getElementById("asso");
+        var inv = document.getElementById("inv");
+        var ferm = document.getElementById("ferm");
+        var iden = document.getElementById("iden");
+        var solH = document.getElementById("solH"); 
+        var sol = document.getElementById("sol");
+        var win = document.getElementById("win");
+        var eq = document.getElementById("eq"); 
+        var eq1 = document.getElementById("eq1"); 
+        var eq2 = document.getElementById("eq2");
+        var eq3 = document.getElementById("eq3");
+        var eq4 = document.getElementById("eq4");
+        var eq5 = document.getElementById("eq5");
+        var eq6 = document.getElementById("eq6");
+        var eq7 = document.getElementById("eq7");
+          
+
+        function rubiksAfter(){
+            if(c==18){
+
+            }else{
+                a+=3
+                b+=3
+                c+=3
+            rubiksImg.src="rubiks"+a+".jpg"
+            rubiksImg2.src="rubiks"+b+".jpg"
+            rubiksImg3.src="rubiks"+c+".jpg"
+            console.log(a)
+            console.log(b)
+            console.log(c)
+            }
+        }
+        function rubiksBefore(){
+            if(a==1){
+
+            }else{
+                a-=3
+                b-=3
+                c-=3
+            rubiksImg.src="rubiks"+a+".jpg"
+            rubiksImg2.src="rubiks"+b+".jpg"
+            rubiksImg3.src="rubiks"+c+".jpg"
+            console.log(a)
+            console.log(b)
+            console.log(c)
+            }
+        }
+
+        
+        function page1(){  
+            pageMenu.style.display = "none";
+            page1ID.style.display="block"
+        }
+        function page2(){
+            var theorie = document.getElementById("theorie");
+            var choixTheorie = document.getElementById("choixTheorie");      
+            theorie.style.display = "none";
+            choixTheorie.style.display = "block";
+        }
+
+        //theorie permutation
+        function thPerm(){     
+          pageMenu.style.display = "none";
+          perm.style.display = "block";
+        }
+        function coin(){
+          document.getElementById("expPerm").innerHTML="On remet les 8 coins dans le Rubik's cube. On remarque qu’il y a 8 positions que tu peux choisir avec le 1e coin. Puis, 7 positions possibles avec le 2e coin. Puis, 6 positions possibles avec le 3e coins... Ce qui vient au formule de: 8x7x6x5x4x3 = 8! On remarque qu’il y a 3 faces à chaque coin. Ainsi, quand on remet les coins à leur position, il y aussi 3 possibilités par chaque coin qu’on remet. Ce qui donne cette formule de:  3x3x3....x3 = 3^8. "
+        }
+        function arret(){
+          document.getElementById("expPerm").innerHTML="On remet les 12 arrêts dans le Rubik's cube. Il y a 12 positions possibles et ces positions réduisent à chaque arrêt remis: 12x11x10...x2x1 = 12! Il y a 2 faces à chaque arrêt: 2x2x2x....x2 = 2 ^12. "
+        }
+        function faceCoin(){
+          document.getElementById("expPerm").innerHTML="Le 1/3 vient du fait que la face du dernier coin dépend des 7 premiers:  3x3x3x3x3x3x1= 3^7= 3^8 / 3. Ce qui fait que ce n’est plus x3 au dernier coin, mais bien x1 vu qu’il y a juste une seule façon de mettre la face de celui-ci. "
+        }
+        function faceArret(){
+          document.getElementById("expPerm").innerHTML="Le ½ a la même logique que le 1/3 du coin. Ce qui est que le dernier arrêt dépend des 11 premiers, ce qui fait qu’il n’y a qu’une seule façon de mettre les faces de l’arrêt:  2x2x2....x2x1= 2^11 = (2^12)/3. "
+        }
+        function position(){
+          document.getElementById("expPerm").innerHTML="Si on commence par positionner les coins, on peut mettre n’importe où le position de ceux-ci. Cependant, ce principe ne s’applique pas avec les positions des arrêts qu’on assemble après. Les deux derniers arrêts n’ont qu’une seule possibilité de positionnement. Dans le fond, les deux derniers pièces mises dans le Rubik’s cube a un positionnement particulier. Ce qui fait que, dans cet exemple, le 12! devient:  12x11x10.....x3x1x1. Ce qui fait le dernier 1/2 de l’équation du nombre de permutation possible. "
+        }
+        function rPerm(){
+          pageMenu.style.display = "block";
+          perm.style.display = "none";
+        }
+
+        //theorie du groupe
+        function thGroupe(){
+          pageMenu.style.display = "none";
+          groupe.style.display = "block";
+        }
+        function associativite(){
+          groupe.style.display = "none";
+          asso.style.display = "block"
+        }
+        function identite(){
+          groupe.style.display = "none";
+          iden.style.display = "block"
+        }
+        function inverse(){
+          groupe.style.display = "none";
+          inv.style.display = "block"
+        }
+        function fermeture(){
+          groupe.style.display = "none";
+          ferm.style.display = "block"
+        }
+        function rGroupe(){
+          console.log("allo")
+          pageMenu.style.display = "block";
+          groupe.style.display = "none";
+        }
+        function rAsso(){
+          groupe.style.display = "block";
+          asso.style.display = "none";
+        }
+        function rIden(){
+          groupe.style.display = "block";
+          iden.style.display = "none";
+        }
+        function rInv(){
+          groupe.style.display = "block";
+          inv.style.display = "none";
+        }
+        function rFerm(){
+          groupe.style.display = "block";
+          ferm.style.display = "none";
+        }
+
+        //solution
+        function solutionH(){
+          page1ID.style.display = "none";
+          solH.style.display = "block";
+        }
+        function solution(){
+          sol.style.display = "block";
+          solH.style.display = "none";
+        }
+        function rSolution(){
+          sol.style.display = "none";
+          pageMenu.style.display = "block";
+        }
+        function rSol(){
+          if (eq1.style.display == "block"||eq2.style.display == "block"||eq3.style.display == "block"||eq4.style.display == "block"||eq5.style.display == "block"||eq6.style.display == "block"){
+            sol.style.display = "block"
+            eq1.style.display="none"
+              eq2.style.display="none"
+              eq3.style.display="none"
+              eq4.style.display="none"
+              eq5.style.display="none"
+              eq6.style.display="none"
+             
+          }
+        }
+        function solWin(){
+            eq7.style.display="none"
+            sol.style.display="block"
+            win.style.display="block"
+            sol.style.backgroundColor="rgb(247, 184, 49)"
+          }
+        function e1(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq1.style.display = "block"
+          
+        }
+        function e2(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq2.style.display = "block"
+        }
+        function e3(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq3.style.display = "block"
+        }
+        function e4(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq4.style.display = "block"
+        }
+        function e5(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq5.style.display = "block"
+        }
+        function e6(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq6.style.display = "block"
+        }
+        function e7(){
+          eq.style.display="block"
+          sol.style.display = "none";
+          eq7.style.display = "block"
+        }
+    </script>
+</body>
+</html>
